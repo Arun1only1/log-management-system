@@ -12,7 +12,7 @@ const TopUserAgentCard = () => {
     <StatCard
       isPending={isPending}
       title="Top User Agent"
-      value={data?.agent || ""}
+      value={data?.agent ? `${data.agent.substring(0, 50)}...` : ""}
       icon={<ShieldUser />}
     />
   );
