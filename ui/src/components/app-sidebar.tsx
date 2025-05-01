@@ -32,19 +32,20 @@ const data: {
       source: "all",
       requiredRoles: ["admin"],
     },
-    {
-      title: "Nginx",
-      url: "/nginx",
-      icon: <IconListDetails />,
-      source: "nginx",
-      requiredRoles: ["admin", "nginx"],
-    },
+
     {
       title: "Apache",
       url: "/apache",
       icon: <IconChartBar />,
       source: "apache",
       requiredRoles: ["admin", "apache"],
+    },
+    {
+      title: "Nginx",
+      url: "/nginx",
+      icon: <IconListDetails />,
+      source: "nginx",
+      requiredRoles: ["admin", "nginx"],
     },
   ],
 };
