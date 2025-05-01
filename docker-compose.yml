@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./backend/.env
+
+  frontend:
+    build:
+      context: ./ui
+    ports:
+      - "5173:5173"
+    env_file:
+      - ./ui/.env
+    depends_on:
+      - backend

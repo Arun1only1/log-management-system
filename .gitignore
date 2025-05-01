@@ -1,0 +1,15 @@
+# Node modules
+**/node_modules
+
+# Logs
+**/logs
+
+# Build directories
+ui/build
+backend/dist
+
+**/.vscode
+
+**/.env
+
+**.pdf
