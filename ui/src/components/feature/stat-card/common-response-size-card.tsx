@@ -8,11 +8,9 @@ const CommonResponseSizeCard = () => {
 
   const { isPending, data } = useCommonResponseSize({ source });
 
-  if (isPending) {
-    return <h1>Loading...</h1>;
-  }
   return (
     <StatCard
+      isPending={isPending}
       title="Common Response Size"
       value={`${data?.bytes || 0} bytes`}
       icon={<MessageSquareReply />}
