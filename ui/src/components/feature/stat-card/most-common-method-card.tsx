@@ -8,11 +8,9 @@ const MostCommonMethodCard = () => {
 
   const { isPending, data } = useCommonMethod({ source });
 
-  if (isPending) {
-    return <h1>Loading...</h1>;
-  }
   return (
     <StatCard
+      isPending={isPending}
       title="Most Common Method"
       value={data?.method || ""}
       icon={<GitPullRequest />}

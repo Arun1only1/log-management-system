@@ -8,11 +8,13 @@ const MostActiveIpCard = () => {
 
   const { isPending, data } = useActiveIp({ source });
 
-  if (isPending) {
-    return <h1>Loading...</h1>;
-  }
   return (
-    <StatCard title="Most Active IP" value={data?.ip || ""} icon={<Cpu />} />
+    <StatCard
+      title="Most Active IP"
+      value={data?.ip || ""}
+      icon={<Cpu />}
+      isPending={isPending}
+    />
   );
 };
 
