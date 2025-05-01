@@ -1,14 +1,9 @@
-import {
-  IconDotsVertical,
-  IconLogout,
-  IconUserCircle,
-} from "@tabler/icons-react";
+import { IconDotsVertical, IconLogout } from "@tabler/icons-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -20,10 +15,10 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { getShortName } from "@/utils/get-short-name";
-import { useNavigate } from "react-router";
 import { useAppDispatch } from "@/store/hooks";
 import { clearAuth } from "@/store/slices/auth-slice";
+import { getShortName } from "@/utils/get-short-name";
+import { useNavigate } from "react-router";
 
 interface Props {
   firstName: string;
@@ -88,14 +83,8 @@ export function NavUser({ firstName, lastName, email }: Props) {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <IconUserCircle />
-                Account
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout}>
+            <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
               <IconLogout />
               Log out
             </DropdownMenuItem>
