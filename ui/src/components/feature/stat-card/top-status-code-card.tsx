@@ -10,11 +10,9 @@ const TopHttpStatusCodeCard = () => {
     source,
   });
 
-  if (isPending) {
-    return <h1>Loading...</h1>;
-  }
   return (
     <StatCard
+      isPending={isPending}
       title="Top Http Status Code"
       value={String(data?.statusCode || 0)}
       icon={<Code />}

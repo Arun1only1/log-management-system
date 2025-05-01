@@ -8,11 +8,9 @@ const TotalEventsCard = () => {
 
   const { isPending, data } = useTotalEvents({ source });
 
-  if (isPending) {
-    return <h1>Loading...</h1>;
-  }
   return (
     <StatCard
+      isPending={isPending}
       title="Total Events"
       value={new Intl.NumberFormat().format(data?.totalEvents || 0)}
       icon={<Activity />}

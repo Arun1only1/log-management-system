@@ -8,11 +8,9 @@ const TopUserAgentCard = () => {
 
   const { isPending, data } = useTopUserAgent({ source });
 
-  if (isPending) {
-    return <h1>Loading...</h1>;
-  }
   return (
     <StatCard
+      isPending={isPending}
       title="Top User Agent"
       value={data?.agent || ""}
       icon={<ShieldUser />}

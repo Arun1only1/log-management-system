@@ -1,11 +1,15 @@
+import type React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Props {
   title: string;
   value: string;
   icon: React.ReactNode;
+  isPending?: boolean;
 }
-const StatCard = ({ title, value, icon }: Props) => {
+
+const StatCard = ({ title, value, icon, isPending = false }: Props) => {
   return (
     <Card className="@container/card bg-gradient-to-r from-purple-500 to-pink-500">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
@@ -21,9 +25,13 @@ const StatCard = ({ title, value, icon }: Props) => {
       <CardContent>
         <div className="space-y-3">
           <div className="relative">
-            <div className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-              {value}
-            </div>
+            {isPending ? (
+              <Skeleton className="h-8 w-32 bg-slate-200 dark:bg-slate-800" />
+            ) : (
+              <div className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                {value}
+              </div>
+            )}
           </div>
         </div>
       </CardContent>
