@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 interface Props {
   title: string;
-  value: string;
+  value: string | number;
   icon: React.ReactNode;
   isPending?: boolean;
 }
