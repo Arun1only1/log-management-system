@@ -1,43 +1,33 @@
-# Stage 1: Build the application
-FROM node:22-alpine AS builder
-
-# Set the working directory inside the container
+FROM node:22 AS builder
 WORKDIR /app
 
-# Copy package.json and pnpm-lock.yaml to the container
+RUN npm install -g pnpm
+
 COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
-# Install pnpm and dependencies
-RUN npm install -g pnpm && pnpm install
-
-# Copy the rest of the application code to the container
 COPY . .
 
-# Build the NestJS app
+# ✅ explicitly copy log files to ensure they're in build context
+COPY src/logs/log-files ./src/logs/log-files
+
 RUN pnpm run build
 
-# Stage 2: Run the application
-FROM node:22-alpine
-
-# Set the working directory inside the container
+# --- run stage ---
+FROM node:22
 WORKDIR /app
 
-# Set PNPM_HOME and update PATH to avoid global bin directory errors
-ENV PNPM_HOME=/usr/local/pnpm
-ENV PATH=$PNPM_HOME:$PATH
+RUN npm install -g pnpm
 
-# Copy only the necessary files from the build stage
-COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
-COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
 
-# Install pnpm and NestJS CLI globally
-RUN npm install -g pnpm && \
-    mkdir -p $PNPM_HOME && \
-    pnpm install -g @nestjs/cli
+#  copy logs from builder stage
+COPY --from=builder /app/src/logs/log-files /log-files
 
-# Expose the port the app will run on
+
+RUN pnpm install --prod --frozen-lockfile
+
 EXPOSE 8080
 
-# Command to run the app
-CMD ["pnpm", "run", "start:prod"]
+CMD ["node", "dist/main"]

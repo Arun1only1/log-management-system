@@ -1,10 +1,10 @@
-import { useCommonStatusCode } from "@/api/hooks/logs-stat/use-common-status-code";
-import { Code } from "lucide-react";
-import StatCard from "./stat-card";
-import { useDashboardQueryParams } from "@/hooks/query-params/use-dashboard-query-params";
+import { useCommonStatusCode } from '@/api/hooks/logs-stat/use-common-status-code';
+import { useLogSource } from '@/hooks/use-log-source';
+import { Code } from 'lucide-react';
+import StatCard from './stat-card';
 
 const TopHttpStatusCodeCard = () => {
-  const { source } = useDashboardQueryParams();
+  const source = useLogSource();
 
   const { isPending, data } = useCommonStatusCode({
     source,
@@ -13,7 +13,7 @@ const TopHttpStatusCodeCard = () => {
   return (
     <StatCard
       isPending={isPending}
-      title="Top Http Status Code"
+      title='Top Http Status Code'
       value={String(data?.statusCode || 0)}
       icon={<Code />}
     />
