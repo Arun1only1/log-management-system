@@ -51,6 +51,8 @@ The Log Management System is a comprehensive platform designed to streamline the
 
 2. The backend API will be available at `http://localhost:8080`.
 
+3. Hit `http://localhost:8080/logs/seed` to seed the database with logs.
+
 ### Stopping the Services
 
 To stop the Docker services, run:
