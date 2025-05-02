@@ -7,7 +7,7 @@ import {
   topAgentUrl,
   topHttpStatusCodeUrl,
   totalEventsUrl,
-} from "@/api/url/logs-url";
+} from '@/api/url/logs-url';
 import {
   IActiveIpResponse,
   IBarChartResponse,
@@ -17,10 +17,10 @@ import {
   ITopAgentResponse,
   ITopStatusCodeResponse,
   ITotalEventsResponse,
-} from "@/interface";
-import { ILogTableDataResponse } from "@/interface/response/log-stat/log-table-data.interface";
+} from '@/interface';
+import { ILogTableDataResponse } from '@/interface/response/log-stat/log-table-data.interface';
 
-import axiosInstance from "@/services/axios";
+import axiosInstance from '@/services/axios';
 
 // ip
 export const getMostActiveIp = async ({
@@ -107,6 +107,8 @@ export interface ITableDataOptions {
   search?: string;
   startDate?: string;
   endDate?: string;
+  page: number;
+  limit?: number;
 }
 
 export const getTableData = async (

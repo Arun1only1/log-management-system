@@ -1,17 +1,17 @@
-import StatCard from "./stat-card";
-import { Cpu } from "lucide-react";
-import { useActiveIp } from "@/api/hooks/logs-stat/use-active-ip";
-import { useDashboardQueryParams } from "@/hooks/query-params/use-dashboard-query-params";
+import { useActiveIp } from '@/api/hooks/logs-stat/use-active-ip';
+import { useLogSource } from '@/hooks/use-log-source';
+import { Cpu } from 'lucide-react';
+import StatCard from './stat-card';
 
 const MostActiveIpCard = () => {
-  const { source } = useDashboardQueryParams();
+  const source = useLogSource();
 
   const { isPending, data } = useActiveIp({ source });
 
   return (
     <StatCard
-      title="Most Active IP"
-      value={data?.ip || ""}
+      title='Most Active IP'
+      value={data?.ip || ''}
       icon={<Cpu />}
       isPending={isPending}
     />

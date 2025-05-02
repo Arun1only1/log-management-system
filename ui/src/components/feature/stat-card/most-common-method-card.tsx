@@ -1,18 +1,18 @@
-import StatCard from "./stat-card";
-import { GitPullRequest } from "lucide-react";
-import { useCommonMethod } from "@/api/hooks/logs-stat/user-common-method";
-import { useDashboardQueryParams } from "@/hooks/query-params/use-dashboard-query-params";
+import { useCommonMethod } from '@/api/hooks/logs-stat/user-common-method';
+import { useLogSource } from '@/hooks/use-log-source';
+import { GitPullRequest } from 'lucide-react';
+import StatCard from './stat-card';
 
 const MostCommonMethodCard = () => {
-  const { source } = useDashboardQueryParams();
+  const source = useLogSource();
 
   const { isPending, data } = useCommonMethod({ source });
 
   return (
     <StatCard
       isPending={isPending}
-      title="Most Common Method"
-      value={data?.method || ""}
+      title='Most Common Method'
+      value={data?.method || ''}
       icon={<GitPullRequest />}
     />
   );
